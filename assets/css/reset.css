@@ -1,0 +1,28 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+
+  border: none;
+  background: none;
+}
+
+:root{
+  font-size: 62.5%;
+
+  --bg: #ffffff;
+  --bg-card: #02799d;
+  --white: #fff;
+  --fc-primary: #323238; 
+
+  --input-range: #323238; 
+
+  --bg-dark: #121212;
+  --fc-dark: #fff;
+  --gray: #C4C4CC;
+  --bg-card-dark: #29292E;
+  --bg-card-active-dark: #0A3442;
+}
