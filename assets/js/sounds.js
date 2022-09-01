@@ -13,70 +13,44 @@ export default function Sound(){
 
   const soundAlert = new Audio('https://github.com/maykbrito/automatic-video-creator/blob/master/audios/button-press.wav?raw=true')
 
-  const volForest = document.querySelector('#volForest');
-  const volRain = document.querySelector('#volRain');
-  const volCoffeShop = document.querySelector('#volCoffeeShop');
-  const volFireplace = document.querySelector('#volFireplace');
+  const sounds = {
+    forest: soundForest,
+    rain: soundRain,
+    coffe: soundCoffe,
+    fireplace: soundFirePlace
+  }
 
+  function playSound(event) {
+    const parentButton = event.target.closest('button')
+    const buttonId = parentButton.id
+    const inputRange = parentButton.querySelector('input')
 
-  function pressButtonForest(e){
-    if(e.target.classList.contains('active')){
-      soundForest.pause()
-      e.target.classList.remove('active')
-      volForest.classList.remove('active')
+    if (event.target === inputRange) {
+      return
     }
-    else{
-      soundForest.play()
-      soundForest.loop = true;
-      soundForest.volume = volForest.value;
-      e.target.classList.add('active')
-      volForest.classList.add('active')
+
+    parentButton.classList.toggle('active')
+
+    if (parentButton.classList.contains('active')) {
+      sounds[buttonId].play()
+      sounds[buttonId].loop = true
+    } else {
+      sounds[buttonId].pause()
     }
   }
 
-  function pressButtonRain(e){
-    if(e.target.classList.contains('active')){
-      soundRain.pause()
-      e.target.classList.remove('active')
-      volRain.classList.remove('active')
-    }
-    else{
-      soundRain.play()
-      soundRain.loop = true;
-      soundRain.volume = volRain.value;
-      e.target.classList.add('active')
-      volRain.classList.add('active')
-    }	
-  }
 
-  function pressButtonCoffeShop(e){
-    if(e.target.classList.contains('active')){
-      soundCoffe.pause()
-      e.target.classList.remove('active')
-      volCoffeShop.classList.remove('active')
-    }
-    else{
-      soundCoffe.play()
-      soundCoffe.loop = true;
-      soundCoffe.volume = volCoffeShop.value;
-      e.target.classList.add('active')
-      volCoffeShop.classList.add('active')
-    }
-  }
 
-  function pressButtonFirePlace(e){
-    if(e.target.classList.contains('active')){
-      soundFirePlace.pause()
-      e.target.classList.remove('active')
-      volFireplace.classList.remove('active')
+  function onChangeVolume(event) {
+    const parentButton = event.target.closest('button')
+    const buttonId = parentButton.id
+
+    if (event.target.value == 0) {
+      parentButton.classList.remove('active')
+      sounds[buttonId].pause()
     }
-    else{
-      soundFirePlace.play()
-      soundFirePlace.loop = true;
-      soundFirePlace.volume = volFireplace.value;
-      e.target.classList.add('active')
-      volFireplace.classList.add('active')
-    }
+
+    sounds[buttonId].volume = event.target.value
   }
 
   function pressButton(){
@@ -93,12 +67,10 @@ export default function Sound(){
   
 
   return{
-    pressButtonForest,
-    pressButtonRain,
-    pressButtonCoffeShop,
-    pressButtonFirePlace,
     pressButton,
     kitchenTimerAudio,
-    alertAudio
+    alertAudio,
+    playSound,
+    onChangeVolume
   }
 }

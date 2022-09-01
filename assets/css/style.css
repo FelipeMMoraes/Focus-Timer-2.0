@@ -46,15 +46,15 @@ button {
   gap: 1rem;
 }
 
-.sounds button svg path:nth-child(1).active {
+.sounds button.active svg path:nth-child(1){
   fill: var(--bg-card);
 }
-.sounds button svg path:nth-child(1).active + path:nth-child(2) {
+.sounds button.active svg path:nth-child(1) + path:nth-child(2) {
   fill: var(--white);
 }
 
-input[type='range'].active::-webkit-slider-thumb,
-input[type='range'].active {
+.sounds button.active input[type='range']::-webkit-slider-thumb,
+.sounds button.active input[type='range'] {
   background: var(--white);
 }
 
@@ -117,7 +117,7 @@ input[type='range']::-webkit-slider-thumb {
 
 button.forest,
 button.rain,
-button.coffee-shop,
+button.coffe,
 button.fireplace {
   position: relative;
   height: 152px;
