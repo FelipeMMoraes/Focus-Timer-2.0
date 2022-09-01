@@ -16,6 +16,8 @@ const controls = Controls({
   btnPause,
 })
 
+const { playSound, onChangeVolume } = sounds
+
 /*Theme */
 const selectTheme = document.querySelector('#select-theme')
 const lightTheme = document.querySelector('.light-theme')
@@ -38,23 +40,11 @@ const timer = Timer({
 Events({controls, timer, sounds})
 
 /*Btn Sounds */
-const forestSound = document.querySelector('.forest');
-const rainSound = document.querySelector('.rain');
-const coffeShopSound = document.querySelector('.coffee-shop');
-const fireplaceSound = document.querySelector('.fireplace');
+const buttonsSound = document.querySelectorAll('.sounds > button')
 
-forestSound.addEventListener('click', function(e){
-  sounds.pressButtonForest(e)
-});
+buttonsSound.forEach((button) => {
+  const input = button.querySelector('input')
 
-coffeShopSound.addEventListener('click', function(e){
-  sounds.pressButtonCoffeShop(e)
-});
-
-rainSound.addEventListener('click', function(e){
-  sounds.pressButtonRain(e)
-});
-
-fireplaceSound.addEventListener('click', function(e){
-  sounds.pressButtonFirePlace(e)
+  button.addEventListener('click', playSound)
+  input.addEventListener('mousemove', onChangeVolume)
 });
